@@ -1,0 +1,27 @@
+{
+  "id": "olympus/slurm",
+  "title": "Job Manager (Slurm)",
+  "description": "",
+  "source": "@site/docs/olympus/slurm.md",
+  "sourceDirName": "olympus",
+  "slug": "/olympus/slurm",
+  "permalink": "/olympus/slurm",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/olympus/slurm.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "slurm",
+    "title": "Job Manager (Slurm)"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Package Manager (Spack)",
+    "permalink": "/olympus/spack"
+  },
+  "next": {
+    "title": "example",
+    "permalink": "/foothills/example-foothills"
+  }
+}

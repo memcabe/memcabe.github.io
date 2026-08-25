@@ -1,0 +1,51 @@
+import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+
+const sidebars = {
+  docs: [
+    {
+        type: 'category',
+	label: 'FTHPC Lab Compute Resources',
+        collapsible: true,
+	collapsed: false,
+	items: [
+	    {
+	      type: 'category',
+              label: 'Olympus',
+              collapsible: true,
+              collapsed: false,
+              items: [
+		{
+		  type: 'category',
+                  label: 'Docs',
+                  items: [
+                    'account-registration',
+                    'nodes',
+                    'spack',
+                    'slurm',
+                  ],
+                },
+              ],
+            },
+          {
+            type: 'category',
+            label: 'Foothills',
+	    collapsible: true,
+            collapsed: false,
+            items: [
+              {
+                type: 'category',
+		label: 'Docs',
+                items: [
+		  'example-foothills',
+		],
+              },
+            ],
+          },
+        ],
+      },
+      'example',
+    ],
+};
+
+
+export default sidebars;

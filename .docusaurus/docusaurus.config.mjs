@@ -30,8 +30,8 @@ export default {
   },
   "url": "https://memcabe.github.io",
   "baseUrl": "/",
-  "organizationName": "facebook",
-  "projectName": "docusaurus",
+  "organizationName": "memcabe",
+  "projectName": "memcabe.github.io",
   "onBrokenLinks": "throw",
   "i18n": {
     "defaultLocale": "en",
@@ -64,7 +64,7 @@ export default {
       "disableSwitch": false
     },
     "navbar": {
-      "title": "My Site",
+      "title": "FTHPC Lab Documentation",
       "logo": {
         "alt": "My Site Logo",
         "src": "img/logo.svg"
@@ -72,7 +72,7 @@ export default {
       "items": [
         {
           "type": "docSidebar",
-          "sidebarId": "tutorialSidebar",
+          "sidebarId": "docs",
           "position": "left",
           "label": "Documentation"
         },

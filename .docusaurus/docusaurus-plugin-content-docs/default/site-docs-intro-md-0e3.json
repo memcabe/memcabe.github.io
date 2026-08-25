@@ -15,10 +15,5 @@
     "id": "intro",
     "title": "FTHPC Lab Compute Resources",
     "slug": "/"
-  },
-  "sidebar": "tutorialSidebar",
-  "next": {
-    "title": "Example Section",
-    "permalink": "/example"
   }
 }

@@ -15,9 +15,9 @@
     "id": "example",
     "title": "Example Section"
   },
-  "sidebar": "tutorialSidebar",
+  "sidebar": "docs",
   "previous": {
-    "title": "FTHPC Lab Compute Resources",
-    "permalink": "/"
+    "title": "example",
+    "permalink": "/foothills/example-foothills"
   }
 }

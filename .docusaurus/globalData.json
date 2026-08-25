@@ -13,24 +13,44 @@
             {
               "id": "example",
               "path": "/example",
-              "sidebar": "tutorialSidebar"
+              "sidebar": "docs"
+            },
+            {
+              "id": "foothills/example-foothills",
+              "path": "/foothills/example-foothills",
+              "sidebar": "docs"
             },
             {
               "id": "intro",
-              "path": "/",
-              "sidebar": "tutorialSidebar"
+              "path": "/"
             },
             {
-              "id": "olympus/intro",
-              "path": "/"
+              "id": "olympus/account-registration",
+              "path": "/olympus/account-registration",
+              "sidebar": "docs"
+            },
+            {
+              "id": "olympus/nodes",
+              "path": "/olympus/nodes",
+              "sidebar": "docs"
+            },
+            {
+              "id": "olympus/slurm",
+              "path": "/olympus/slurm",
+              "sidebar": "docs"
+            },
+            {
+              "id": "olympus/spack",
+              "path": "/olympus/spack",
+              "sidebar": "docs"
             }
           ],
           "draftIds": [],
           "sidebars": {
-            "tutorialSidebar": {
+            "docs": {
               "link": {
-                "path": "/",
-                "label": "intro"
+                "path": "/olympus/account-registration",
+                "label": "olympus/account-registration"
               }
             }
           }

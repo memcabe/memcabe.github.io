@@ -1,0 +1,23 @@
+{
+  "id": "olympus/account-registration",
+  "title": "Account Registration",
+  "description": "",
+  "source": "@site/docs/olympus/account-registration.md",
+  "sourceDirName": "olympus",
+  "slug": "/olympus/account-registration",
+  "permalink": "/olympus/account-registration",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/olympus/account-registration.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "account-registration",
+    "title": "Account Registration"
+  },
+  "sidebar": "docs",
+  "next": {
+    "title": "Nodes",
+    "permalink": "/olympus/nodes"
+  }
+}

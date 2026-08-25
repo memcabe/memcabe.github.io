@@ -1,0 +1,27 @@
+{
+  "id": "olympus/spack",
+  "title": "Package Manager (Spack)",
+  "description": "",
+  "source": "@site/docs/olympus/spack.md",
+  "sourceDirName": "olympus",
+  "slug": "/olympus/spack",
+  "permalink": "/olympus/spack",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/olympus/spack.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "spack",
+    "title": "Package Manager (Spack)"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Nodes",
+    "permalink": "/olympus/nodes"
+  },
+  "next": {
+    "title": "Job Manager (Slurm)",
+    "permalink": "/olympus/slurm"
+  }
+}

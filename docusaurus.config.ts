@@ -61,7 +61,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'My Site',
+      title: 'FTHPC Lab Documentation',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
@@ -69,7 +69,7 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'docs',
           position: 'left',
           label: 'Documentation',
         },

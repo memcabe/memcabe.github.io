@@ -1,0 +1,27 @@
+{
+  "id": "foothills/example-foothills",
+  "title": "example",
+  "description": "",
+  "source": "@site/docs/foothills/example.md",
+  "sourceDirName": "foothills",
+  "slug": "/foothills/example-foothills",
+  "permalink": "/foothills/example-foothills",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/foothills/example.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "example-foothills",
+    "title": "example"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Job Manager (Slurm)",
+    "permalink": "/olympus/slurm"
+  },
+  "next": {
+    "title": "Example Section",
+    "permalink": "/example"
+  }
+}
