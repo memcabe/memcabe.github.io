@@ -1,7 +1,7 @@
 {
   "id": "olympus/spack",
-  "title": "Package Manager (Spack)",
-  "description": "",
+  "title": "Software Building and Spack",
+  "description": "The cluster uses Spack to manage software at /share/software/spack. This installation is shared across all users and nodes. Users can load existing packages, reuse dependencies installed by other users, and build additional software against those libraries.",
   "source": "@site/docs/olympus/spack.md",
   "sourceDirName": "olympus",
   "slug": "/olympus/spack",
@@ -13,11 +13,11 @@
   "version": "current",
   "frontMatter": {
     "id": "spack",
-    "title": "Package Manager (Spack)"
+    "title": "Software Building and Spack"
   },
   "sidebar": "docs",
   "previous": {
-    "title": "Nodes",
+    "title": "Hardware and Network",
     "permalink": "/olympus/nodes"
   },
   "next": {

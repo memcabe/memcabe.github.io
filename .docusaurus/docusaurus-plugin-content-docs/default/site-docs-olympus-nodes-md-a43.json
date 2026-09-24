@@ -1,7 +1,7 @@
 {
   "id": "olympus/nodes",
-  "title": "Nodes",
-  "description": "",
+  "title": "Hardware and Network",
+  "description": "The Olympus cluster contains one head node, three CPU compute nodes, and two GPU compute nodes in a 48U rack. Ethernet supports management and routine connectivity while a separate InfiniBand fabric supports communication between nodes running parallel workloads.",
   "source": "@site/docs/olympus/nodes.md",
   "sourceDirName": "olympus",
   "slug": "/olympus/nodes",
@@ -13,7 +13,7 @@
   "version": "current",
   "frontMatter": {
     "id": "nodes",
-    "title": "Nodes"
+    "title": "Hardware and Network"
   },
   "sidebar": "docs",
   "previous": {
@@ -21,7 +21,7 @@
     "permalink": "/olympus/account-registration"
   },
   "next": {
-    "title": "Package Manager (Spack)",
+    "title": "Software Building and Spack",
     "permalink": "/olympus/spack"
   }
 }
