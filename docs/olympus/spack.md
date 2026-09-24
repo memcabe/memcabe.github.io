@@ -1,4 +1,114 @@
 ---
 id: spack
-title: Package Manager (Spack)
+title: Software Building and Spack
 ---
+
+# Software Building and Spack
+
+The cluster uses **Spack** to manage software at **`/share/software/spack`**. This installation is shared across all users and nodes. Users can load existing packages, reuse dependencies installed by other users, and build additional software against those libraries.
+
+The recommended workflow is to find an appropriate installed package, load it with `spack load`, and use the same software environment for building and running an application.
+
+## Software Overview
+
+| Component | Version | Purpose |
+| --- | --- | --- |
+| Spack | 0.22.2 | Software installation and dependency management |
+| GCC, CMake, GMake | \*User's discretion | Application compilation |
+| Open MPI | 4.1.4, 4.1.6, 5.0.3, 5.0.5 installed | Communication between processes and nodes |
+| UCX | 1.16.0 | High-performance communication, including InfiniBand |
+| Slurm | 23.11.11 | Resource allocation and job launching |
+| PMIx | v4 launch plugin; system version configured as 4.2.9 | MPI process startup with Slurm |
+| CUDA toolkit | 11.4.4, 11.8.0, 12.0.1 installed | GPU application compilation and libraries |
+| NVIDIA driver | 550.163.01 verified on `hades` | Access to the NVIDIA A100 GPUs |
+
+Multiple builds of a package may be installed with different features. The version list describes available software; it does not mean every combination has been tested together.
+
+\*GCC, CMake, and GNU Make versions are often described in an application's documentation. Generally, users should check if the version they require is already installed with spack. If not they should install and load the package manually. Packages that are used on a regular basis by the same user should be loaded on startup by adding a `spack load <package_hash>` in their `~/.bashrc` file.
+
+## Set Up Your Account
+
+New users should add this line once to their `~/.bashrc` file:
+
+```bash
+source /share/software/spack/share/spack/setup-env.sh
+```
+
+Run the same command in the current terminal to enable Spack immediately. This makes the `spack` command available on all nodes immediately upon login. Individual packages are loaded separately. Include this initialization in Slurm job scripts as well.
+
+## What to Load
+
+| Application | Packages needed |
+| --- | --- |
+| CPU application | A suitable compiler and any libraries required by the application |
+| MPI application | `openmpi`; its selected UCX dependency is included when loading an MPI build with UCX support |
+| CUDA application | `cuda` and a compatible host compiler |
+| Application using MPI and CUDA | Both `openmpi` and `cuda`; passing GPU memory directly to MPI requires a CUDA-aware communication stack |
+| Application using the UCX API directly | `ucx` and the application's other dependencies |
+
+Check available versions and currently loaded packages:
+
+```bash
+spack find openmpi ucx cuda
+spack find --loaded
+```
+
+Load packages by name and version. If several installations match, add the build options needed to select the intended one. The MPI example below includes those options because several Open MPI 4.1.6 builds are installed. [Spack package-loading guide](https://spack.readthedocs.io/en/v0.22.5/basic_usage.html)
+
+## Building an MPI Application
+
+This example selects an installed Open MPI 4.1.6 build with UCX support:
+
+```bash
+spack load openmpi@4.1.6~cxx fabrics=ucx
+mpicc -O2 example.c -o example
+```
+
+Replace `example.c` with your application's source file. For larger projects, use their Make or CMake instructions with the selected MPI compiler wrappers.
+
+MPI applications use `mpicc`, `mpicxx`, or `mpifort` to supply the appropriate compiler and library options. UCX provides the communication layer underneath MPI, so normal MPI applications do not need a separate, independently selected UCX package. Note that most applications provide a `makefile` that will look to environment variables for a compiler. Rather than explicitly linking to dependancy paths, a simple `spack load <dependancy>` will add the proper compiler path to your environment variables.
+
+Load the same MPI package in the job script that runs the application. Keep its associated communication libraries together when switching between software environments.
+
+## MPI, UCX, and Slurm
+
+The cluster runs Slurm 23.11.11 with PMIx v4 support. Spack configures the system PMIx version as 4.2.9. Open MPI 4.1.x and 5.0.x can integrate with this Slurm setup when built with compatible PMIx support. UCX 1.16.0 is installed for the communication layer.
+
+This configuration does not define a single maximum Open MPI version. Individual builds and applications require validation for MPI and PMIx compatability. [Slurm MPI guide](https://slurm.schedmd.com/mpi_guide.html)
+
+Run MPI applications within a Slurm allocation. Open MPI recommends `mpirun` for this workflow:
+
+```bash
+mpirun ./example
+```
+
+For a build validated with Slurm direct launch, use `srun --mpi=pmix ./example`. PMIx is already the cluster's default. Open MPI 5 requires PMIx for direct launch and does not support the older PMI-2 launch interface. [Open MPI Slurm guidance](https://docs.open-mpi.org/en/v5.0.x/launching-apps/slurm.html)
+
+## GPU Drivers and CUDA
+
+The NVIDIA driver provides GPU access, while Spack supplies the CUDA toolkit used to build applications. For example:
+
+```bash
+spack load cuda@12.0.1
+nvcc --version
+```
+
+Loading CUDA supplies the compiler and toolkit environment. It does not change the installed GPU driver. An `nvcc: command not found` message may simply mean a toolkit has not been loaded.
+
+For applications using both MPI and CUDA, load both packages before building. The current UCX builds were compiled without CUDA support, so direct communication of GPU-memory buffers through UCX is not established. Such applications need a CUDA-enabled UCX/MPI combination; applications that copy data to CPU memory before MPI communication can use a different workflow. [Open MPI CUDA guidance](https://docs.open-mpi.org/en/v5.0.3/tuning-apps/networking/cuda.html)
+
+## Reusing Shared Dependencies
+
+Users can build on packages installed by other users. Search for existing libraries before creating another installation, and record package names, versions, and relevant build options with each project.
+
+For a Spack-managed build, specify dependencies in the build command. Loading a package into the shell does not automatically select it for a new Spack installation. For example, preview and then install parallel HDF5 using Open MPI 4.1.6 and UCX 1.16.0:
+
+```bash
+spack spec --reuse hdf5+mpi ^openmpi@4.1.6 ^ucx@1.16.0
+spack install --reuse hdf5+mpi ^openmpi@4.1.6 ^ucx@1.16.0
+```
+
+Review the proposed configuration before installing. `--reuse` favors compatible existing dependencies and builds additional packages where needed. [Spack command reference](https://spack.readthedocs.io/en/v0.22.5/command_index.html#spack-spec)
+
+The CPU nodes use Zen 4 processors, while the head and GPU nodes use Zen 3 processors. Choose software built for the nodes where the application will run. A shared installation path does not make a CPU-specific build suitable for every node. Spack is smart, the recommended workflow for building and installing packages is to allocate the hardware you wish to run on with slurm and build there.
+
