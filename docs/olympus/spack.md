@@ -20,7 +20,7 @@ The recommended workflow is to find an appropriate installed package, load it wi
 | Slurm | 23.11.11 | Resource allocation and job launching |
 | PMIx | v4 launch plugin; system version configured as 4.2.9 | MPI process startup with Slurm |
 | CUDA toolkit | 11.4.4, 11.8.0, 12.0.1 installed | GPU application compilation and libraries |
-| NVIDIA driver | 550.163.01 verified on `hades` | Access to the NVIDIA A100 GPUs |
+| NVIDIA driver | 550.163.01 | Access to the NVIDIA A100 GPUs |
 
 Multiple builds of a package may be installed with different features. The version list describes available software; it does not mean every combination has been tested together.
 
@@ -66,7 +66,7 @@ mpicc -O2 example.c -o example
 
 Replace `example.c` with your application's source file. For larger projects, use their Make or CMake instructions with the selected MPI compiler wrappers.
 
-MPI applications use `mpicc`, `mpicxx`, or `mpifort` to supply the appropriate compiler and library options. UCX provides the communication layer underneath MPI, so normal MPI applications do not need a separate, independently selected UCX package. Note that most applications provide a `makefile` that will look to environment variables for a compiler. Rather than explicitly linking to dependancy paths, a simple `spack load <dependancy>` will add the proper compiler path to your environment variables.
+MPI applications use `mpicc`, `mpicxx`, or `mpifort` to supply the appropriate compiler and library options. UCX provides the communication layer underneath MPI, so normal MPI applications do not need a separate, independently selected UCX package. Note that most applications provide a `makefile` that will look to environment variables for a compiler. Rather than explicitly linking to dependency paths, a simple `spack load <package_name>` will add the proper compiler path to your environment variables.
 
 Load the same MPI package in the job script that runs the application. Keep its associated communication libraries together when switching between software environments.
 

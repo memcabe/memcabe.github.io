@@ -14,13 +14,13 @@ The recommended workflow is to find an appropriate installed package, load it wi
 | Component | Version | Purpose |
 | --- | --- | --- |
 | Spack | 0.22.2 | Software installation and dependency management |
-| GCC, CMake, GMake | \*User's Discresion | Application compilation |
+| GCC, CMake, GMake | \*User's discretion | Application compilation |
 | Open MPI | 4.1.4, 4.1.6, 5.0.3, 5.0.5 installed | Communication between processes and nodes |
 | UCX | 1.16.0 | High-performance communication, including InfiniBand |
 | Slurm | 23.11.11 | Resource allocation and job launching |
 | PMIx | v4 launch plugin; system version configured as 4.2.9 | MPI process startup with Slurm |
 | CUDA toolkit | 11.4.4, 11.8.0, 12.0.1 installed | GPU application compilation and libraries |
-| NVIDIA driver | 550.163.01 verified on `hades` | Access to the NVIDIA A100 GPUs |
+| NVIDIA driver | 550.163.01 | Access to the NVIDIA A100 GPUs |
 
 Multiple builds of a package may be installed with different features. The version list describes available software; it does not mean every combination has been tested together.
 
