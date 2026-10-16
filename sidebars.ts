@@ -22,6 +22,7 @@ const sidebars = {
                     'olympus/nodes',
                     'olympus/spack',
                     'olympus/slurm',
+                    'olympus/ansible',
                   ],
                 },
               ],
